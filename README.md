@@ -4,7 +4,7 @@
 
 This repository contains the Software Engineering contribution to a multidisciplinary capstone project focused on planning mobile renewable energy charging stations in Istanbul.
 
-The Software Engineering team develops a web-based Decision Support System (DSS) that receives structured engineering data, validates and stores it, and presents the results through maps, dashboards, station views, scenario comparison, and reports.
+The software is a web-based Decision Support System (DSS) that imports structured engineering data, validates and stores it, and presents planning results through interactive maps, dashboards, and scenario comparison tools.
 
 ## Software Team
 
@@ -15,49 +15,69 @@ The Software Engineering team develops a web-based Decision Support System (DSS)
 
 ## Technology Stack
 
-- **Frontend:** React
+- **Frontend:** React 18 with Vite
 - **Backend:** Laravel REST API
-- **Database:** MySQL
+- **Database:** MySQL 8
 - **Mapping:** OpenStreetMap with Leaflet / React Leaflet
+- **Charts:** Recharts
+- **HTTP client:** Axios
 - **Data formats:** CSV and JSON
-- **Version control and documentation:** Git and GitHub
+- **Containerization:** Docker / Docker Compose
+- **Version control:** Git and GitHub
 
-## Main Features
+## Implemented Features
 
-- User authentication and role-based access
-- Dataset upload and management
-- CSV / JSON validation
-- Structured database storage
-- Interactive charging-station map
-- Dashboard and KPI views
-- Station-level details
-- Scenario management
-- Scenario comparison
-- Report generation and export
+- Import and validation of structured project datasets
+- Import history tracking and dataset clearing
+- Candidate charging-station location management
+- Existing charging-station and socket data import
+- Traffic-demand data import and visualization
+- Optimization-result import
+- Electrical simulation-result import
+- Interactive map layers and demand visualization
+- Dashboard summary and KPI views
+- Scenario creation, retrieval, deletion, and comparison
+- Structured database storage through Laravel models and migrations
+
+## REST API
+
+The Laravel backend currently exposes endpoints for:
+
+- Dashboard summary
+- Map layers and demand data
+- Scenario management and comparison
+- Import history
+- Candidate POIs
+- Existing chargers
+- Socket data
+- Traffic demand
+- Optimization results
+- Simulation results
 
 ## System Architecture
 
 The software follows a three-tier architecture:
 
-1. **Presentation Layer** — React frontend for forms, maps, dashboards, tables, scenarios, and reports.
-2. **Application Layer** — Laravel REST API for authentication, validation, business logic, data import, scenario handling, and reporting.
-3. **Data Layer** — MySQL database for users, datasets, stations, scenarios, results, and reports.
+1. **Presentation Layer** — React frontend for maps, dashboards, scenario views, data import, and visualization.
+2. **Application Layer** — Laravel REST API for validation, data import, scenario handling, and business logic.
+3. **Data Layer** — MySQL database for scenarios, charging stations, sockets, demand points, optimization results, simulation results, and import records.
 
 Structured outputs from the Industrial Engineering and Electrical and Electronics Engineering teams are imported through the data ingestion and validation layer before being stored and visualized in the DSS.
 
-## Planned Repository Structure
+## Repository Structure
 
 ```text
 capstone-dss/
-├── frontend/              # React application
-├── backend/               # Laravel API
-├── database/              # Schema, migrations, and database documentation
+├── frontend/              # React / Vite application
+├── backend/               # Laravel REST API
+├── database/              # Database documentation
 ├── datasets/
 │   └── sample/            # Non-sensitive sample datasets
 ├── docs/
 │   ├── architecture/      # Architecture diagrams and design notes
 │   ├── api/               # API documentation
 │   └── testing/           # Test plans and results
+├── docker-compose.yml
 ├── README.md
 └── .gitignore
 ```
@@ -69,18 +89,18 @@ The DSS is designed to consume structured project data such as:
 - Candidate charging-station locations
 - Existing charging stations
 - Charging socket information
-- Traffic-density data
+- Traffic-density and demand data
 - Planning and optimization outputs
-- Electrical feasibility and performance indicators, when available
+- Electrical feasibility and simulation outputs
 
 ## Project Scope
 
-The Software Engineering component focuses on data management, validation, visualization, integration, and decision support. The optimization models and electrical simulations are developed by their respective engineering sub-teams and are consumed by the DSS as structured outputs.
+The Software Engineering component focuses on data management, validation, visualization, integration, and decision support. Optimization models and electrical simulations are developed by their respective engineering sub-teams and are consumed by the DSS as structured outputs.
 
 ## Repository Purpose
 
-GitHub is used for repository organization, version control, documentation, and final project sharing. This repository also provides a central location for the software source code, architecture documentation, testing materials, and installation instructions.
+GitHub is used for source-code management, version control, documentation, collaboration, and final project sharing.
 
 ## Status
 
-Capstone 2 development in progress.
+Core DSS prototype implemented. Final integration, verification, and project delivery are in progress.
