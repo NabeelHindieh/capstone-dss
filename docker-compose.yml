@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ev_dss
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ev_dss
+      MYSQL_PASSWORD: ev_dss
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: ev_dss
+      DB_USERNAME: ev_dss
+      DB_PASSWORD: ev_dss
+      FRONTEND_URL: http://localhost:5173
+    depends_on:
+      mysql:
+        condition: service_healthy
+    # First run needs `docker compose exec backend composer install`
+    # then `php artisan key:generate && php artisan migrate && php artisan import:base-datasets`
+    command: sh -c "php artisan serve --host=0.0.0.0 --port=8000"
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:8000/api
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+volumes:
+  mysql_data:

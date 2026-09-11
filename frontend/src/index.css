@@ -1,0 +1,101 @@
+* { box-sizing: border-box; }
+
+.leaflet-container,
+.leaflet-container * {
+  box-sizing: content-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: #0f172a;
+  color: white;
+}
+.app-header nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-left: 1.25rem;
+  font-weight: 500;
+}
+.app-header nav a.active { color: white; }
+
+.app-main { padding: 1.5rem; max-width: 1200px; margin: 0 auto; }
+
+.app-main-wide {
+  max-width: 1600px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.card-value { font-size: 1.75rem; font-weight: 700; }
+.card-label { color: #64748b; font-size: 0.85rem; }
+.card-caption {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.panel.notice {
+  background: #fffbeb;
+  border-color: #fde68a;
+  border-left: 4px solid #f59e0b;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.toolbar { margin-bottom: 0.75rem; }
+
+.table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; background: white; }
+.table th, .table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+a.card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+
+button:disabled { background: #94a3b8; cursor: not-allowed; }
+
+input, select { padding: 0.4rem; margin-right: 0.5rem; }
